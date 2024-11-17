@@ -1,0 +1,18 @@
+﻿@model List<CoreMyPortfolio.DAL.Entities.Skill>
+<div class="col-six tab-full right">
+    <h3>Programlama Dilleri & Teknolojileri</h3>
+
+    <ul class="skill-bars">
+        @foreach (var item in Model)
+        {
+            // Value'yu progress sınıfına dahil ediyoruz.
+            var progressClass = $"progress percent{item.Value}";
+            <li>
+                <div class="@progressClass"><span>@item.Value</span></div>
+                <strong>@item.Title</strong>
+
+            </li>
+        }
+
+    </ul>
+</div>
