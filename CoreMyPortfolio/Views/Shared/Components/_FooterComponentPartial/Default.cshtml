@@ -1,42 +1,23 @@
-﻿<footer>
+﻿@model List<CoreMyPortfolio.DAL.Entities.SocialMedia>
+<footer>
     <div class="row">
         <div class="col-full">
 
-            <div class="footer-logo">
-                <a class="footer-site-logo" href="#0"><img src="images/logo.png" alt="Homepage"></a>
-            </div>
+           
 
             <ul class="footer-social">
-                <li>
-                    <a href="#0">
-                        <i class="im im-facebook" aria-hidden="true"></i>
-                        <span>Facebook</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-twitter" aria-hidden="true"></i>
-                        <span>Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-instagram" aria-hidden="true"></i>
-                        <span>Instagram</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-behance" aria-hidden="true"></i>
-                        <span>Behance</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-pinterest" aria-hidden="true"></i>
-                        <span>Pinterest</span>
-                    </a>
-                </li>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@item.Url" target="_blank">
+                            <i class="@item.İcon" aria-hidden="true"></i>
+                            <span>@item.Title</span>
+                        </a>
+                    </li>
+                    
+                }
+               
+
             </ul>
 
         </div>
@@ -47,7 +28,7 @@
         <div class="col-twelve">
             <div class="copyright">
                 <span>© Copyright MyPortfolyo @DateTime.Now.Year</span>
-                <span>Design by <a href="https://www.styleshout.com/">Asp.Net Core 6.0 || Hüseyin Kurban</a></span>
+                <span>Design by <a href="#">Asp.Net Core 6.0 || Hüseyin Kurban</a></span>
             </div>
 
             <div class="go-top">

@@ -1,13 +1,14 @@
-﻿<section id="contact" class="s-contact target-section">
+﻿@model List<CoreMyPortfolio.DAL.Entities.Contact>
+<section id="contact" class="s-contact target-section">
 
     <div class="overlay"></div>
 
     <div class="row narrow section-intro">
         <div class="col-full">
             <h3>İletişim</h3>
-            <h1>Bana Ulaşın</h1>
+            <h1>@ViewBag.Title</h1>
 
-            <p class="lead">Dinamik Gelicek</p>
+            <p class="lead">@ViewBag.Description</p>
         </div>
     </div>
 
@@ -29,7 +30,7 @@
                         <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
                     </div>
                     <div class="form-field">
-                        <button class="full-width btn--primary">Submit</button>
+                        <button class="full-width btn--primary">Gönder</button>
                         <div class="submit-loader">
                             <div class="text-loader">Sending...</div>
                             <div class="s-loader">
@@ -45,35 +46,37 @@
 
             <!-- contact-warning -->
             <div class="message-warning">
-                Something went wrong. Please try again.
+               Mesaj Gönderilemedi. Yeniden Deneyiniz.
             </div>
 
             <!-- contact-success -->
             <div class="message-success">
-                Your message was sent, thank you!<br>
+              Mesajınız Başarıyla Gönderildi.<br>
             </div>
 
         </div>
         <div class="col-four tab-full contact__infos">
-            <h4 class="h06">Phone</h4>
-            <p>
-                Phone: (+63) 555 1212<br>
-                Mobile: (+63) 555 0100<br>
-                Fax: (+63) 555 0101
-            </p>
+            @foreach (var item in Model)
+            {
+                <h4 class="h06">Phone</h4>
+                <p>
+                    Phone: @item.Phone1<br>
+                    Mobile: @item.Phone2<br>
+                   
+                </p>
 
-            <h4 class="h06">Email</h4>
-            <p>
-                someone@holawebsite.com<br>
-                info@holawebsite.com
-            </p>
+                <h4 class="h06">Email</h4>
+                <p>
+                    @item.Email1<br>
+                   @item.Email2
+                </p>
 
-            <h4 class="h06">Address</h4>
-            <p>
-                1600 Amphitheatre Parkway<br>
-                Mountain View, CA<br>
-                94043 US
-            </p>
+                <h4 class="h06">Address</h4>
+                <p>
+                   @item.Address
+                </p>
+            }
+           
         </div>
 
     </div>

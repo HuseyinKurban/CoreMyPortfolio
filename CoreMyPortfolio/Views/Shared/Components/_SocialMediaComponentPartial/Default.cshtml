@@ -1,0 +1,12 @@
+﻿@model List<CoreMyPortfolio.DAL.Entities.SocialMedia>
+
+<ul class="home-social">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@item.Url" target="_blank"><i class="@item.İcon" aria-hidden="true"></i><span>@item.Title</span></a>
+        </li>
+    }
+   
+   
+</ul>
