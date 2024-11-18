@@ -12,7 +12,10 @@ namespace CoreMyPortfolio.ViewComponents
             ViewBag.SkillCount = context.Skills.Count();
             ViewBag.ExperienceCount = context.Experiences.Count();
             ViewBag.PortfolioCount = context.Portfolios.Count();
-            ViewBag.skillValueAvg = context.Skills.Sum(x => x.Value);
+
+
+            ViewBag.skillValueAvg =Convert.ToInt32(context.Skills.Average(s => s.Value));
+
 
             return View();
         }
