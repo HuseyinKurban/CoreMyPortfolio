@@ -1,0 +1,89 @@
+﻿@model List<Skill>
+@{
+    ViewData["Title"] = "SkillList";
+    Layout = "~/Views/Layout/Index.cshtml";
+
+}
+@{
+    string renk = "";
+    int count = 0;
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Yetenekler</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Yetenekler Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Yetenekler ile ilgili işlemleri aşağıdaki panelden yapabilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Oran</th>
+                                    <th scope="col">Değer</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var x in Model)
+                                {
+                                    count++;
+                                    if (x.Value >= 0 && x.Value <= 50)
+                                    {
+                                        renk = "progress-bar bg-danger";
+                                      
+                                    }
+                                    else if (x.Value >= 51 && x.Value <= 70)
+                                    {
+                                        renk = "progress-bar bg-warning";
+                                       
+                                    }
+                                    else if (x.Value >= 71 && x.Value <= 84)
+                                    {
+                                        renk = "progress-bar bg-primary";
+                                        
+                                    }
+                                    else if (x.Value >= 85 && x.Value <= 100)
+                                    {
+                                        renk = "progress-bar bg-success";
+                                        
+                                    }
+
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@x.Title</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="@renk" style="width:@x.Value%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-info text-white">@x.Value%</span></td>
+
+
+
+                                        <td><a href="/Skill/DeleteSkill/@x.SkillId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Skill/UpdateSkill/@x.SkillId" class="btn btn-success">Güncelle</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <a href="/Skill/CreateSkill" class="btn btn-primary">Yeni Yetenek Girişi</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

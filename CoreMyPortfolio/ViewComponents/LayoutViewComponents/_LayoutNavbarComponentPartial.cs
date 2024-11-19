@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreMyPortfolio.DAL.Context;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreMyPortfolio.ViewComponents.LayoutViewComponents
 {
 	public class _LayoutNavbarComponentPartial:ViewComponent
 	{
-		public IViewComponentResult Invoke()
+        MyPortfolioContext context = new MyPortfolioContext();
+        public IViewComponentResult Invoke()
 		{
-			return View();
+            ViewBag.Img = context.Features.Select(x => x.ImageUrl).FirstOrDefault();
+            ViewBag.Email=context.Contacts.Select(x=>x.Email1).FirstOrDefault();
+            return View();
 		}
 	}
 }
