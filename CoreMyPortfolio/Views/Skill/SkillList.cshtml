@@ -6,6 +6,7 @@
 }
 @{
     string renk = "";
+    string labelrenk = "";
     int count = 0;
 }
 
@@ -41,21 +42,25 @@
                                     if (x.Value >= 0 && x.Value <= 50)
                                     {
                                         renk = "progress-bar bg-danger";
+                                        labelrenk = "badge bg-danger";
                                       
                                     }
                                     else if (x.Value >= 51 && x.Value <= 70)
                                     {
                                         renk = "progress-bar bg-warning";
+                                        labelrenk = "badge bg-warning";
                                        
                                     }
                                     else if (x.Value >= 71 && x.Value <= 84)
                                     {
                                         renk = "progress-bar bg-primary";
+                                        labelrenk = "badge bg-primary";
                                         
                                     }
                                     else if (x.Value >= 85 && x.Value <= 100)
                                     {
                                         renk = "progress-bar bg-success";
+                                        labelrenk = "badge bg-success";
                                         
                                     }
 
@@ -67,13 +72,15 @@
                                                 <div class="@renk" style="width:@x.Value%"></div>
                                             </div>
                                         </td>
-                                        <td><span class="badge bg-info text-white">@x.Value%</span></td>
+                                        <td><span class="@labelrenk text-white">@x.Value%</span></td>
 
 
 
                                         <td><a href="/Skill/DeleteSkill/@x.SkillId" class="btn btn-danger">Sil</a></td>
                                         <td><a href="/Skill/UpdateSkill/@x.SkillId" class="btn btn-success">Güncelle</a></td>
+
                                     </tr>
+                                  
                                 }
 
                             </tbody>
