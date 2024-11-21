@@ -31,6 +31,10 @@ Admin panelinde tüm CRUD işlemleri yapılabiliyor. Admin, yapılacaklar listes
 ![image](https://github.com/user-attachments/assets/df552d02-807b-49a9-b92c-08af3872f6f2)
 ![image](https://github.com/user-attachments/assets/a4d2e244-3a62-4d46-ba77-bdfa170ede70)
 ![image](https://github.com/user-attachments/assets/b1b3bf90-96b6-4041-a770-84f7b1b46f0a)
+![image](https://github.com/user-attachments/assets/25f7e695-b4d4-4d18-a290-595a5808213b)
+![image](https://github.com/user-attachments/assets/d10dd27b-2f13-4a1c-8d53-40a9d8608118)
+
+
 
 
 
