@@ -1,8 +1,77 @@
-﻿
+﻿@model List<ToDoList>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
+
 }
 
-<h1>Index</h1>
+<div class="col-md-12" style="margin-top:80px;">
+    <div class="card card-tasks">
+
+        <div class="card-header ">
+            <h4 class="card-title">Görevler</h4>
+            <p class="card-category">
+                Yapılacaklar listesi
+            </p>
+        </div>
+
+        <div class="card-body ">
+            <div class="table-full-width">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+
+                            </th>
+                            <th>Yapılacaklar</th>
+                            <th>Tarih</th>
+                            <th>Durum</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input task-select" type="checkbox" @(item.Status ? "checked" : "") >
+                                            <span class="form-check-sign"></span>
+                                        </label>
+                                    </div>
+                                </td>
+
+                                <td>@item.Title</td>
+                                <td>@item.Date.ToShortDateString()</td>
+
+                                @if (item.Status == true)
+                                {
+                                    <td><a href="/ToDoList/ChangeToDoListStatusToFalse/@item.ToDoListId" class="btn btn-dark">Yapılmadı Olarak İşaretle</a></td>
+                                }
+                                else
+                                {
+                                    <td><a href="/ToDoList/ChangeToDoListStatusToTrue/@item.ToDoListId" class="btn btn-info">Yapıldı Olarak İşaretle</a></td>
+                                }
+
+                                <td><a href="/ToDoList/UpdateToDoList/@item.ToDoListId" class="btn btn-success">Güncelle</a></td>
+                                <td><a href="/ToDoList/DeleteToDoList/@item.ToDoListId" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <a href="/ToDoList/CreateToDoList" style="margin-left:10px;" class="btn btn-primary">Yeni Yapılacak İşlem Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>
 
