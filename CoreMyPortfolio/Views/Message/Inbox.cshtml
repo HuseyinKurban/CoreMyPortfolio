@@ -1,0 +1,102 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mesajlar</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Gelen Mesaj Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Mesaj ile ilgili işlemleri aşağıdaki panelden yapabilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Gönderen</th>
+                                    <th scope="col">Konu</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Mesajı Aç</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MessageId</td>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.SendDate.ToShortDateString()</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#messageModal" onclick="openMessageDetails('@item.NameSurname', '@item.Subject', '@item.Email', '@item.SendDate.ToShortDateString()', '@item.MessageDetail')">
+                                                Mesajı Aç
+                                            </button>
+                                        </td>
+
+                                        @if (item.IsRead == true)
+                                        {
+                                            <td><a href="/Message/ChangeIsReadToFalse/@item.MessageId" class="btn btn-dark">Okunmadı Olarak İşaretle</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td><a href="/Message/ChangeIsReadToTrue/@item.MessageId" class="btn btn-info">Okundu Olarak İşaretle</a></td>
+                                        }
+                                        <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-danger">Sil</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Mesaj Detayı</h5>
+            </div>
+            <div class="modal-body">
+                <div><strong>Gönderen:</strong> <span id="sender"></span></div>
+                <div><strong>Konu:</strong> <span id="subject"></span></div>
+                <div><strong>Email:</strong> <span id="email"></span></div>
+                <div><strong>Tarih:</strong> <span id="date"></span></div>
+                <div><strong>Mesaj:</strong> <p id="messageDetail"></p></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<script>
+    function openMessageDetails(sender, subject, email, date, messageDetail) {
+        // Modal içeriğini doldur
+        document.getElementById('sender').innerText = sender;
+        document.getElementById('subject').innerText = subject;
+        document.getElementById('email').innerText = email;
+        document.getElementById('date').innerText = date;
+        document.getElementById('messageDetail').innerText = messageDetail;
+    }
+</script>
